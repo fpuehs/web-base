@@ -51,9 +51,8 @@ jobs:
     test:
       pre:
       - bash bin/install-wp-tests.sh wordpress_test ubuntu '' 127.0.0.1 latest
-      - |
-      composer global require wp-coding-standards/wpcs
-      phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
-      override:
+      - composer global require wp-coding-standards/wpcs
+      - phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
+    override:
       - phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
       - phpunit
